@@ -1,0 +1,15 @@
+{namespace Dashboard.Item.Estimate}
+
+/**
+* @param pluginName
+* @param version
+*/
+{template .Static}
+ <div>Welcome to <span class="aui-lozenge aui-lozenge-success">{$pluginName}</span> v{$version}!</div>
+ <div id="dynamic-content" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"/>
+ <div class="buttons-container">
+  <div class="buttons">
+   <input class="button submit" type="submit" value="Refresh">
+  </div>
+ </div>
+{/template}

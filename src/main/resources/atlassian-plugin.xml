@@ -1,0 +1,60 @@
+<atlassian-plugin key="${atlassian.plugin.key}" name="${project.name}" plugins-version="2">
+    <plugin-info>
+        <description>${project.description}</description>
+        <version>${project.version}</version>
+        <vendor name="${project.organization.name}" url="${project.organization.url}" />
+        <param name="plugin-icon">images/pluginIcon.png</param>
+        <param name="plugin-logo">images/pluginLogo.png</param>
+    </plugin-info>
+
+    <!-- add our i18n resource -->
+    <resource type="i18n" name="i18n" location="estimate"/>
+    
+    <!-- add our web resources -->
+    <web-resource key="estimate-resources" name="estimate Web Resources">
+        <dependency>com.atlassian.auiplugin:ajs</dependency>
+        
+        <resource type="download" name="estimate.css" location="/css/estimate.css"/>
+        <resource type="download" name="estimate.js" location="/js/estimate.js"/>
+        <resource type="download" name="images/" location="/images"/>
+
+        <context>estimate</context>
+    </web-resource>
+
+    <dashboard-item key="new-dashboard-item"
+                    i18n-name-key="com.avagulov.jira.estimate.dashboard.item.title">
+        <definition>
+            <title key="com.avagulov.jira.estimate.dashboard.item.title"/>
+            <categories>
+                <category>Jira</category>
+            </categories>
+            <author>
+                <name>avagulov</name>
+            </author>
+            <thumbnail location="/download/resources/${atlassian.plugin.key}:dashboard-item-estimate-resources/images/pluginLogo.png"/>
+        </definition>
+        <description key="com.example.plugins.tutorial.dashboard.item.description"/>
+        <resource name="view" type="soy" location=":dashboard-item-estimate-resources/Dashboard.Item.Estimate.Static"/>
+        <context-provider class="com.avagulov.jira.impl.DashboardItemContextProvider"/>
+        <amd-module>dashboard-item/estimate</amd-module>
+    </dashboard-item>
+
+    <web-resource key="dashboard-item-estimate-resources" name="dashboard-item-estimate-resources Web Resources">
+        <dependency>com.atlassian.auiplugin:ajs</dependency>
+        <transformation extension="soy">
+            <transformer key="soyTransformer"/>
+        </transformation>
+        <!--<resource type="download" name="dashboard-item-tutorial.css" location="/css/dashboard-item-tutorial.css"/>-->
+        <resource type="download" name="dashboard-item-estimate.js" location="/js/dashboard-item-estimate.js"/>
+        <resource type="download" name="images/" location="/images"/>
+        <resource type="download" location="soy/dashboard-item.soy" name="soy/dashboard-item.soy.js"/>
+        <resource type="soy" location="/soy/dashboard-item.soy" name="Dashboard.Item.Estimate.Static"/>
+        <context>atl.dashboard</context>
+        <context>dashboard-item-estimate</context>
+    </web-resource>
+
+    <rest key="estimaterest" path="/estimate" version="1.0">
+        <description>Estimate services</description>
+    </rest>
+
+</atlassian-plugin>
