@@ -36,14 +36,18 @@ define('dashboard-item/estimate', ['underscore', 'jquery', 'wrm/context-path'], 
                             dataLabels: {
                                 enabled: true,
                                 format: '<b>{point.name}</b>: {point.percentage:.1f} %'
-                            }
+                            },
+                            showInLegend: true
                         }
                     },
                     series: [{
                         name: 'Rates',
                         colorByPoint: true,
                         data: newData
-                    }]
+                    }],
+                    legend: {
+                        enabled: true
+                    }
                 });
 
             });

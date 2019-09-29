@@ -52,7 +52,7 @@ public class EstimateRest {
 
             final SearchResults results = searchService.search(ComponentAccessor.getJiraAuthenticationContext().getLoggedInUser(),
                     query, PagerFilter.getUnlimitedFilter());
-            issues = results.getIssues();
+            issues = results.getResults();
 
             Optional<CustomField> trcf = customFieldManager.getCustomFieldObjectsByName(MyPluginComponentImpl.TASK_RATE)
                     .stream().findFirst();
